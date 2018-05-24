@@ -5,10 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style type="text/css">
 
+        
         </style>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
     </head>
     <body>
-<script src="highcharts.js"></script>
+ <script src="https://code.highcharts.com/stock/highstock.js"></script>
 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
@@ -16,19 +21,13 @@
 
 
 
-/*$.getJSON('http://localhost:56194/api/temperature/current', function(data){
-         console.log(data)
-     })
-        $.getJSON('http://localhost:56194/api/temperature/all', function (data) {
-            
-            let models = data.map(mapData);
-            
-        });
-        function mapData (model) {
-            return [12, model.value]
-        }*/
+$.getJSON('http://969ba8d8.ngrok.io/api/Temperature/period?fromDate=1527148800&toDate=fromDate=1527192098', function(data){
+         var model={};
+         model.timestamps=data.map(function(d) { return d.timestamp});
+         model.values=data.map(function(d) { return d.value});
+         console.log(model);
 
-Highcharts.chart('container', {
+         Highcharts.chart('container', {
     chart: {
         type: 'spline'
     },
@@ -36,8 +35,7 @@ Highcharts.chart('container', {
         text: 'Monthly Average Temperature'
     },
     xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        categories: model.timestamps
     },
     yAxis: {
         title: {
@@ -66,10 +64,14 @@ Highcharts.chart('container', {
         marker: {
             symbol: 'square'
         },
-        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 23.3, 18.3, 13.9, 9.6]
+        data: model.values
         // data: models
     }]
 });
+     })
+        
+
+
         </script> 
     </body>
 </html>
