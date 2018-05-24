@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+<script src="highcharts.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+
+
+/*$.getJSON('http://localhost:56194/api/temperature/current', function(data){
+         console.log(data)
+     })
+        $.getJSON('http://localhost:56194/api/temperature/all', function (data) {
+            
+            let models = data.map(mapData);
+            
+        });
+        function mapData (model) {
+            return [12, model.value]
+        }*/
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'spline'
+    },
+    title: {
+        text: 'Monthly Average Temperature'
+    },
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        title: {
+            text: 'Temperature'
+        },
+        labels: {
+            formatter: function () {
+                return this.value + '°';
+            }
+        }
+    },
+    tooltip: {
+        crosshairs: true,
+        shared: true
+    },
+    plotOptions: {
+        spline: {
+            marker: {
+                radius: 4,
+                lineColor: '#666666',
+                lineWidth: 2
+            }
+        }
+    },
+    series: [{
+        marker: {
+            symbol: 'square'
+        },
+        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 23.3, 18.3, 13.9, 9.6]
+        // data: models
+    }]
+});
+        </script> 
+    </body>
+</html>
