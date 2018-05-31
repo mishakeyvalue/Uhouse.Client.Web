@@ -1,77 +1,28 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style type="text/css">
+<head>
 
-        
-        </style>
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+<title>uHouse</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="styles1.css">
 
-    </head>
-    <body>
- <script src="https://code.highcharts.com/stock/highstock.js"></script>
-
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-<script type="text/javascript">
-
-
-
-$.getJSON('http://969ba8d8.ngrok.io/api/Temperature/period?fromDate=1527148800&toDate=fromDate=1527192098', function(data){
-         var model={};
-         model.timestamps=data.map(function(d) { return d.timestamp});
-         model.values=data.map(function(d) { return d.value});
-         console.log(model);
-
-         Highcharts.chart('container', {
-    chart: {
-        type: 'spline'
-    },
-    title: {
-        text: 'Monthly Average Temperature'
-    },
-    xAxis: {
-        categories: model.timestamps
-    },
-    yAxis: {
-        title: {
-            text: 'Temperature'
-        },
-        labels: {
-            formatter: function () {
-                return this.value + '°';
-            }
-        }
-    },
-    tooltip: {
-        crosshairs: true,
-        shared: true
-    },
-    plotOptions: {
-        spline: {
-            marker: {
-                radius: 4,
-                lineColor: '#666666',
-                lineWidth: 2
-            }
-        }
-    },
-    series: [{
-        marker: {
-            symbol: 'square'
-        },
-        data: model.values
-        // data: models
-    }]
-});
-     })
-        
-
-
-        </script> 
-    </body>
+</head>
+<body>
+<div id="div1">
+<p id="p1">uHouse</p>
+<p id="p2"><a href="#">Настройки</a></p2>
+</div>
+<div id="div2">
+<table id="t1">
+<tr>
+<td><a href="light.html"><div id="div3"><img src="lamp.png">Освещение</div></a></td>
+<td><a href="disinfection.html"><div id="div4"><img src="disinfection.png">Дезинфекция</div></a></td>
+</tr>
+<tr>
+<td><a href="temperature.html"><div id="div5"><img src="thermometer.png">Измерение<br>температуры</div></a></td>
+<td><a href="graphics.html"><div id="div6"><img src="graphic.png">Графики</div></a></td>
+</tr>
+</table>
+</div>
+</body>
 </html>

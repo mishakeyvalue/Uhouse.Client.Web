@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css">
+        </style>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+ <script src="https://code.highcharts.com/stock/highstock.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+
+
+$.getJSON('http://969ba8d8.ngrok.io/api/Temperature/period?fromDate=1527148800&toDate=fromDate=1527192098', function(data){
+         var model={};
+         model.timestamps=data.map(function(d) { return d.timestamp});
+         model.values=data.map(function(d) { return d.value});
+         console.log(model);
+
+    Highcharts.chart('container', {
+    chart: {
+        type: 'spline'
+    },
+    title: {
+        text: 'Monthly Average Temperature'
+    },
+    xAxis: {
+        categories: model.timestamps
+    },
+    yAxis: {
+        title: {
+            text: 'Temperature'
+        },
+        labels: {
+            formatter: function () {
+                return this.value + '°';
+            }
+        }
+    },
+    tooltip: {
+        crosshairs: true,
+        shared: true
+    },
+    plotOptions: {
+        spline: {
+            marker: {
+                radius: 4,
+                lineColor: '#666666',
+                lineWidth: 2
+            }
+        }
+    },
+    series: [{
+        marker: {
+            symbol: 'square'
+        },
+        data: model.values
+        // data: models
+    }]
+});
+     })
+        
+
+
+        </script> 
+    </body>
+</html>

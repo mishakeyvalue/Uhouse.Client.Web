@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>uHouse</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="styles1.css">
+
+</head>
+<body>
+<div id="div1">
+<p id="p1">uHouse</p>
+</div>
+<div id="11">
+<a href="index.html"><span class="glyphicon glyphicon-arrow-left"></span></a>
+</div>
+<div id="div7">
+<select>
+<option selected>Дезинфектор 1</option>
+<option>Дезинфектор 2</option>
+<option>Дезинфектор 3</option>
+</select>
+<div id="div8">
+<img src="disinfection.png">
+</div>
+<div id="div9">
+<table id="t2">
+<tr>
+<td><button onclick="myFunction()">Включить</button></td>
+<script>
+function myFunction() {
+    document.getElementById("div10").style.opacity = 1;
+}
+</script>
+<td><button onclick="myFunction1()">Выключить</button></td>
+<script>
+function myFunction1() {
+    document.getElementById("div10").style.opacity = 0;
+}
+</script>
+</tr>
+</table>
+</div>
+</div>
+<div id="div10" style="padding-left: 570px;">Дезинфектор включен</div>
+</body>
+</html>
