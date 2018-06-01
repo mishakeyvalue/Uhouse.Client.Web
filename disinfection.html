@@ -29,19 +29,19 @@
 <td><button onclick="myFunction()">Включить</button></td>
 <script>
 function myFunction() {
-    document.getElementById("div10").style.opacity = 1;
+    document.getElementById("div10").innerText = "Дезинфектор включен";
 }
 </script>
 <td><button onclick="myFunction1()">Выключить</button></td>
 <script>
 function myFunction1() {
-    document.getElementById("div10").style.opacity = 0;
+    document.getElementById("div10").innerText = "Дезинфектор выключен";
 }
 </script>
 </tr>
 </table>
 </div>
 </div>
-<div id="div10" style="padding-left: 570px;">Дезинфектор включен</div>
+<div id="div10" style="padding-left: 570px;">Дезинфектор выключен</div>
 </body>
 </html>

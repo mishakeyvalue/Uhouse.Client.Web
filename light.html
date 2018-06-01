@@ -29,19 +29,20 @@
 <td><button onclick="myFunction()">Включить</button></td>
 <script>
 function myFunction() {
-    document.getElementById("div10").style.opacity = 1;
+    document.getElementById("div10").innerText = "Лампа включена";
 }
 </script>
 <td><button onclick="myFunction1()">Выключить</button></td>
 <script>
 function myFunction1() {
-    document.getElementById("div10").style.opacity = 0;
+    document.getElementById("div10").innerText = "Лампа выключена";
+
 }
 </script>
 </tr>
 </table>
 </div>
 </div>
-<div id="div10">Лампа включена</div>
+<div id="div10">Лампа выключена</div>
 </body>
 </html>
