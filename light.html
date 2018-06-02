@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/styles/styles1.css">
 <script type="text/javascript" src="assets/js/dist/axios.js"></script>
+<script type="text/javascript" src="assets/js/stationUri.js"></script>
 </head>
 <body>
 <script type="text/javascript">
@@ -40,7 +41,7 @@
 function turnOnLight() {
     document.getElementById("div10").innerText = "Лампа включена";
 
-    axios.post('https://8ff71930.ngrok.io/api/lamp/on', {headers: {
+    axios.post(getStationUri() + '/api/lamp/on', {headers: {
 	  'Access-Control-Allow-Origin': '*',
 	}}) 
    
@@ -54,7 +55,7 @@ function turnOnLight() {
 <script>
 function turnOffLight() {
     document.getElementById("div10").innerText = "Лампа выключена";
-    axios.post('https://8ff71930.ngrok.io/api/lamp/off')
+    axios.post(getStationUri() + '/api/lamp/off')
   .catch(function (error) {
     console.log(error);
   });

@@ -1,47 +1,61 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-<title>uHouse</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/styles/styles1.css">
-<script type="text/javascript" src="assets/js/dist/axios.js"></script>
+  <title>uHouse</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/styles/styles1.css">
+  <script type="text/javascript" src="assets/js/dist/axios.js"></script>
+  <script type="text/javascript" src="assets/js/stationUri.js"></script>
 </head>
+
 <body>
-<div id="div1">
-<p id="p1">uHouse</p>
-</div>
-<div id="11">
-<a href="index.html"><span class="glyphicon glyphicon-arrow-left"></span></a>
-</div>
-<div id="div7">
+  <div id="div1">
+    <p id="p1">uHouse</p>
+  </div>
+  <div id="11">
+    <a href="index.html">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+    </a>
+  </div>
+  <div id="div7">
 
-<div id="div8">
-<img src="assets/images/thermometer.png">
-</div>
-<div id="div9">
-<table id="t2">
-<tr>
-<td><button onclick="measure()">Измерить</button></td>
-<script>
-function measure() {
-    axios.get('https://8ff71930.ngrok.io/api/temperature/current', {headers: {
-	  'Access-Control-Allow-Origin': '*',
-	}}) 
-   .then(function(res) {
-   	let tempDisplay=document.getElementById("tempDisplay");
-   	tempDisplay.value=res.data.value+"°C";
-   })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-</script>
-<td><div id="div12"><input id="tempDisplay" type="text" value="°C" disabled></div></td>
+    <div id="div8">
+      <img src="assets/images/thermometer.png">
+    </div>
+    <div id="div9">
+      <table id="t2">
+        <tr>
+          <td>
+            <button onclick="measure()">Измерить</button>
+          </td>
+          <script>
+            function measure() {
+              axios.get(getStationUri() + '/api/temperature/current', {
+                headers: {
+                  'Access-Control-Allow-Origin': '*',
+                }
+              })
+                .then(function (res) {
+                  let tempDisplay = document.getElementById("tempDisplay");
+                  tempDisplay.value = res.data.value + "°C";
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+            }
+          </script>
+          <td>
+            <div id="div12">
+              <input id="tempDisplay" type="text" value="°C" disabled>
+            </div>
+          </td>
 
-</tr>
-</table>
-</div>
-</div>
+        </tr>
+      </table>
+    </div>
+  </div>
 </body>
+
 </html>
