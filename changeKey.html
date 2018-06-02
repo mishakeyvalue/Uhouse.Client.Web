@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>uHouse</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/styles/styles1.css">
+
+</head>
+<body>
+<div id="div1">
+<p id="p1">uHouse</p>
+</div>
+<div id="11">
+<a href="main.html"><span class="glyphicon glyphicon-arrow-left"></span></a>
+</div>
+<div id="div14">
+<form action="main.html">
+<input  id ="enteredKey" onchange="changeValue()" type="text" placeholder="Введите текущий ключ"><br><br><br>
+<input type="text" placeholder="Введите новый ключ"><br>
+<button type="submit" id="buttonForChange" disabled>Изменить</button>
+</form>
+</div>
+</body>
+<script>
+	function changeValue() {
+		let key="12345678";
+		let userValue = document.getElementById('enteredKey').value;
+		let submitForm = document.getElementById('buttonForChange');
+
+		if(key === userValue) {
+			submitForm.removeAttribute('disabled');
+					console.log(userValue);
+		}		
+	}
+</script>
+</html>

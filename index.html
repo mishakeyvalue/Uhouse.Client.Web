@@ -5,31 +5,41 @@
 <title>uHouse</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/styles/styles1.css">
-<script type="text/javascript" src="assets/js/stationUri.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script type="text/javascript">  </script>
 </head>
 <body>
-<div id="div1">
-<p id="p1">uHouse</p>
-<div class="dropdown">
-  <button class="dropbtn">Настройки</button>
-  <div class="dropdown-content">
-    <a href="#">Помощь</a>
-    <a href="#">Изменить ключ</a>
-    <a href="url.html">Изменить url</a>
-  </div>
-</div>
-</div>
-<div id="div2">
-<table id="t1">
-<tr>
-<td><a href="light.html"><div id="div3"><img src="assets/images/lamp.png">Освещение</div></a></td>
-<td><a href="disinfection.html"><div id="div4"><img src="assets/images/disinfection.png">Дезинфекция</div></a></td>
-</tr>
-<tr>
-<td><a href="temperature.html"><div id="div5"><img src="assets/images/thermometer.png">Измерение<br>температуры</div></a></td>
-<td><a href="graphics1.html"><div id="div6"><img src="assets/images/graphic.png">Графики</div></a></td>
-</tr>
-</table>
-</div>
+	<div id="div1">
+		<p id="p1">uHouse</p>
+	</div>
+
+	<div id="11" style="opacity: 0;">
+	<a ><span class="glyphicon glyphicon-arrow-left"></span></a>
+	</div>
+
+	<div id="div14">
+		<h1>Добро пожаловать в uHouse!</h1>
+		<h2>Введите персональный ключ Вашего устройства для входа в систему:</h2>
+			<form action="main.html">
+				<input id ="enteredKey"  onchange="changeValue()" placeholder="Введите ключ" ><br>
+				<button  id ="buttonForLogIn" type="submit" disabled="true" >Войти</button>
+			</form>
+		
+	</div>
 </body>
+<script type="text/javascript">
+	
+
+	function changeValue() {
+		let key="12345678";
+		let userValue = document.getElementById('enteredKey').value;
+		let submitForm = document.getElementById('buttonForLogIn');
+
+		if(key === userValue) {
+			submitForm.removeAttribute('disabled');
+					console.log(userValue);
+		}		
+	}
+</script>
 </html>

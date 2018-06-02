@@ -160,3 +160,52 @@ span{
 .dropdown:hover .dropbtn {
     text-shadow: 1px 1px 2px black, 0 0 25px white;
 }
+#t3 caption{
+	color: white;
+	font-size: 40px;
+	text-align: center;
+}
+#t3 img{
+	width: 100px;
+	height: 100px;
+}
+#t3{
+	color: white;
+	font-size: 20px;
+	margin: 10px 20px 10px 20px;
+}
+#t3 td{
+	padding: 0 20px 0 20px;
+}
+#div14{
+	margin-top: 130px;
+	margin-left: 530px;
+}
+#div14 input{
+	background-color: white;
+	color: black;
+	width: 300px;
+	height: 40px;
+	border-radius: 20px;
+
+}
+#div14 button{
+	background-color: #848484;
+	color: white;
+	width: 100px;
+	height: 30px;
+	border-radius: 20px;
+	margin-left: 95px;
+	margin-top: 40px
+}
+#div14 h1{
+	color: white;
+	font-size: 40px;
+	margin-left: -110px;
+}
+#div14 h2{
+	color: white;
+	font-size: 20px;
+	margin-left: -170px;
+	padding-bottom: 30px;
+}
