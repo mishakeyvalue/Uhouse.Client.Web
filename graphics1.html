@@ -8,6 +8,9 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  <script src="highcharts.js"></script>
+  <script src="https://code.highcharts.com/stock/highstock.js"></script>
+
 </head>
 <body>
 <div id="div1">
@@ -17,12 +20,12 @@
 <a href="index.html"><span class="glyphicon glyphicon-arrow-left"></span></a>
 </div>
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
+ 
 <script type="text/javascript">
 
 
 
-$.getJSON('http://969ba8d8.ngrok.io/api/Temperature/period?fromDate=1527148800&toDate=fromDate=1527192098', function(data){
+$.getJSON('https://8ff71930.ngrok.io/api/Temperature/all', function(data){
          var model={};
          model.timestamps=data.map(function(d) { return d.timestamp});
          model.values=data.map(function(d) { return d.value});

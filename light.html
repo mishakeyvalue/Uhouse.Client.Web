@@ -40,7 +40,10 @@
 function turnOnLight() {
     document.getElementById("div10").innerText = "Лампа включена";
 
-    axios.post('http://8ff71930.ngrok.io/api/lamp/on')
+    axios.post('https://8ff71930.ngrok.io/api/lamp/on', {headers: {
+	  'Access-Control-Allow-Origin': '*',
+	}}) 
+   
   .catch(function (error) {
     console.log(error);
   });
@@ -51,19 +54,11 @@ function turnOnLight() {
 <script>
 function turnOffLight() {
     document.getElementById("div10").innerText = "Лампа выключена";
-    axios.post('http://8ff71930.ngrok.io/api/lamp/off')
+    axios.post('https://8ff71930.ngrok.io/api/lamp/off')
   .catch(function (error) {
     console.log(error);
   });
 
-
-axios.get('http://8ff71930.ngrok.io/api/lamp/isEnabled')
-	.then (function(res) { 
-		console.log(res)
-	})
-  .catch(function (error) {
-    console.log(error);
-  });
 }
 </script>
 </tr>
