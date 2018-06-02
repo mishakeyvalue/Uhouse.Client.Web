@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/styles/styles1.css">
 <script type="text/javascript" src="assets/js/dist/axios.js"></script>
+<script type="text/javascript" src="assets/js/stationUri.js"></script>
 </head>
 <body>
 <div id="div1">
@@ -30,7 +31,7 @@
 <script>
 function turnOnDevice() {
     document.getElementById("div10").innerText = "Дезинфектор включен";
-     axios.post('http://8ff71930.ngrok.io/api/pin/0/on')
+     axios.post(getStationUri() + '/api/pin/0/on')
   .catch(function (error) {
     console.log(error);
   });
@@ -40,7 +41,7 @@ function turnOnDevice() {
 <script>
 function turnOffDevice() {
     document.getElementById("div10").innerText = "Дезинфектор выключен";
-    axios.post('http://8ff71930.ngrok.io/api/pin/0/off')
+    axios.post(getStationUri() + '/api/pin/0/off')
   .catch(function (error) {
     console.log(error);
   });

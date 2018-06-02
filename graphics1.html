@@ -10,6 +10,7 @@
   crossorigin="anonymous"></script>
   <script src="highcharts.js"></script>
   <script src="https://code.highcharts.com/stock/highstock.js"></script>
+  <script type="text/javascript" src="assets/js/stationUri.js"></script>
 
 </head>
 <body>
@@ -25,7 +26,7 @@
 
 
 
-$.getJSON('https://8ff71930.ngrok.io/api/Temperature/all', function(data){
+$.getJSON(getStationUri() + '/api/Temperature/all', function(data){
          var model={};
          model.timestamps=data.map(function(d) { return d.timestamp});
          model.values=data.map(function(d) { return d.value});
