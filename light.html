@@ -5,9 +5,18 @@
 <title>uHouse</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/styles/styles1.css">
-
+<script type="text/javascript" src="assets/js/dist/axios.js"></script>
 </head>
 <body>
+<script type="text/javascript">
+	// axios.get('http://8ff71930.ngrok.io/api/lamp/isEnabled')
+	// .then (function(res) { 
+	// 	console.log(res)
+	// })
+ //  .catch(function (error) {
+ //    console.log(error);
+ //  });
+</script>
 <div id="div1">
 <p id="p1">uHouse</p>
 </div>
@@ -26,17 +35,35 @@
 <div id="div9">
 <table id="t2">
 <tr>
-<td><button onclick="myFunction()">Включить</button></td>
+<td><button onclick="turnOnLight()">Включить</button></td>
 <script>
-function myFunction() {
+function turnOnLight() {
     document.getElementById("div10").innerText = "Лампа включена";
+
+    axios.post('http://8ff71930.ngrok.io/api/lamp/on')
+  .catch(function (error) {
+    console.log(error);
+  });
 }
 </script>
-<td><button onclick="myFunction1()">Выключить</button></td>
-<script>
-function myFunction1() {
-    document.getElementById("div10").innerText = "Лампа выключена";
 
+<td><button onclick="turnOffLight()">Выключить</button></td>
+<script>
+function turnOffLight() {
+    document.getElementById("div10").innerText = "Лампа выключена";
+    axios.post('http://8ff71930.ngrok.io/api/lamp/off')
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+axios.get('http://8ff71930.ngrok.io/api/lamp/isEnabled')
+	.then (function(res) { 
+		console.log(res)
+	})
+  .catch(function (error) {
+    console.log(error);
+  });
 }
 </script>
 </tr>

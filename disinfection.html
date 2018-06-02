@@ -5,7 +5,7 @@
 <title>uHouse</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/styles/styles1.css">
-
+<script type="text/javascript" src="assets/js/dist/axios.js"></script>
 </head>
 <body>
 <div id="div1">
@@ -26,16 +26,25 @@
 <div id="div9">
 <table id="t2">
 <tr>
-<td><button onclick="myFunction()">Включить</button></td>
+<td><button onclick="turnOnDevice()">Включить</button></td>
 <script>
-function myFunction() {
+function turnOnDevice() {
     document.getElementById("div10").innerText = "Дезинфектор включен";
+     axios.post('http://8ff71930.ngrok.io/api/pin/0/on')
+  .catch(function (error) {
+    console.log(error);
+  });
 }
 </script>
-<td><button onclick="myFunction1()">Выключить</button></td>
+<td><button onclick="turnOffDevice()">Выключить</button></td>
 <script>
-function myFunction1() {
+function turnOffDevice() {
     document.getElementById("div10").innerText = "Дезинфектор выключен";
+    axios.post('http://8ff71930.ngrok.io/api/pin/0/off')
+  .catch(function (error) {
+    console.log(error);
+  });
+
 }
 </script>
 </tr>
