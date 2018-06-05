@@ -23,9 +23,6 @@
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
  
 <script type="text/javascript">
-
-
-
 $.getJSON(getStationUri() + '/api/Temperature/all', function(data){
          var model={};
          model.timestamps=data.map(function(d) { return d.timestamp});
@@ -74,9 +71,6 @@ $.getJSON(getStationUri() + '/api/Temperature/all', function(data){
     }]
 });
      })
-        
-
-
         </script> 
     </body>
 </html>
