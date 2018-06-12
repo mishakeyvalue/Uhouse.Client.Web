@@ -22,7 +22,7 @@ console.log("Bundling for " + (isProduction ? "production" : "development") + ".
 
 module.exports = {
     devtool: isProduction ? undefined : "source-map",
-    entry: resolve('./src/FableElmishReactDemoTemplate.fsproj'),
+    entry: resolve('./src/Uhouse.Client.Web.fsproj'),
     output: {
         filename: 'bundle.js',
         path: resolve('./public')

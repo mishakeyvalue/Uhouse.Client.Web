@@ -7,11 +7,13 @@ open Fable.Import
 open Types
 
 let pageParser: Parser<Page->Page,Page> =
-    oneOf [
+    oneOf [              
       map About (s "about")
+      map App.Types.Page.PinControl (s "pin-control")
       map Counter (s "counter")
-      map CounterList (s "counterlist")
+      map CounterList (s "counterlist")      
       map Home (s "home")
+      map Settings (s "settings")
       map Home top
     ]
 
@@ -30,7 +32,10 @@ let init result =
         { CurrentPage = Home
           Counter = Counter.State.init()
           CounterList = CounterList.State.init()
-          Home = Home.State.init() }
+          Home = Home.State.init()
+          Settings = Settings.State.init() 
+          PinControl = PinControl.State.init (Settings.State.init())
+        }
 
 
 let update msg (model:Model) =
@@ -44,3 +49,8 @@ let update msg (model:Model) =
     | HomeMsg msg ->
         let home = Home.State.update msg model.Home
         { model with Home =  home }, Cmd.none
+
+    | PinControlMsg msg ->
+        let (pinControl, cmds) = PinControl.State.update msg model.PinControl
+        { model with PinControl = pinControl }, Cmd.batch [cmds]
+    | _ -> model, []

@@ -32,9 +32,11 @@ let menu currentPage =
         ul
           [ ClassName "menu-list" ]
           [ menuItem "Home" Page.Home currentPage
+            menuItem "Direct pin control" Page.PinControl currentPage
             menuItem "Counter sample" Page.Counter currentPage
             menuItem "Counter list sample" Page.CounterList currentPage
-            menuItem "About" Page.About currentPage ] ]
+            menuItem "About" Page.About currentPage
+            menuItem "Settings" Page.Settings currentPage ] ]
 
 let root (model: Model) dispatch =
 
@@ -44,6 +46,9 @@ let root (model: Model) dispatch =
         | Counter -> Counter.View.root model.Counter (CounterMsg >> dispatch)
         | CounterList -> CounterList.View.root model.CounterList (CounterListMsg >> dispatch)
         | Home -> Home.View.root model.Home (HomeMsg >> dispatch)
+        | Settings -> Settings.View.root model.Settings (SettingsMsg >> dispatch)
+        | App.Types.PinControl -> PinControl.View.root model.PinControl (PinControl >> dispatch)
+        
 
     div
         []
