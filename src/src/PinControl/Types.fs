@@ -5,6 +5,7 @@ type Model = {
 }
 
 type Msg = 
+| SetSettings of Settings.Types.Model
 | TurnOn
 | TurnOff
 | TurnedOn

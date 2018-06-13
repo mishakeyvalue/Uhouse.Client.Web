@@ -8,17 +8,18 @@ open Types
 
 let root model dispatch = 
     div
-        [ ]
-        [ p
+        [ ClassName "content" ]
+        [ 
+          h1 
+            []
+            [str "Station uri settings"] 
+
+          p
             [ ClassName "control" ]
             [ input
                 [ ClassName "input"
                   Type "text"
-                  Placeholder "Type your name"
-                  DefaultValue model.StationUri
-                  AutoFocus true
+                  Value model.StationUri
                   OnChange (fun ev -> !!ev.target?value |> ChangeStationUri |> dispatch ) ] ]
           br [ ]
-          span
-            [ ]
-            [ str (sprintf "Hello %s" model.StationUri) ] ]
+        ]

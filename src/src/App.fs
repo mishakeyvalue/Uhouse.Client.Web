@@ -47,7 +47,7 @@ let root (model: Model) dispatch =
         | CounterList -> CounterList.View.root model.CounterList (CounterListMsg >> dispatch)
         | Home -> Home.View.root model.Home (HomeMsg >> dispatch)
         | Settings -> Settings.View.root model.Settings (SettingsMsg >> dispatch)
-        | App.Types.PinControl -> PinControl.View.root model.PinControl (PinControl >> dispatch)
+        | App.Types.PinControl -> PinControl.View.root model.PinControl (PinControlMsg >> dispatch)
         
 
     div
