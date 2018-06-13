@@ -2,6 +2,6 @@ module PinControl.Api
 
 open Fable.PowerPack
 
-let pinRequest mode baseUri = Fetch.postRecord (sprintf "%s/api/pin/1/%s" baseUri mode) () []
-let turnOnRequest uri = pinRequest "on" uri
-let turnOffRequest uri = pinRequest "off" uri
+let pinRequest mode baseUri pinId = Fetch.postRecord (sprintf "%s/api/pin/%i/%s" baseUri pinId mode) () []
+let turnOnRequest uri pinId = pinRequest "on" uri pinId
+let turnOffRequest uri pinId = pinRequest "off" uri pinId

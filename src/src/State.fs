@@ -9,7 +9,7 @@ open Types
 let pageParser: Parser<Page->Page,Page> =
     oneOf [              
       map About (s "about")
-      map App.Types.Page.PinControl (s "pin-control")
+      map PinControlList (s "pin-control")
       map Counter (s "counter")
       map CounterList (s "counterlist")      
       map Home (s "home")
@@ -35,7 +35,7 @@ let init result =
           CounterList = CounterList.State.init()
           Home = Home.State.init()
           Settings = settings
-          PinControl = PinControl.State.init settings
+          PinControlList = PinControlList.State.init settings
         }
 
 
@@ -53,9 +53,9 @@ let update msg (model:Model) =
 
     | SettingsMsg msg ->
         let settings = Settings.State.update msg model.Settings
-        { model with Settings = settings }, settings |> PinControl.Types.Msg.SetSettings |> PinControlMsg |> Cmd.ofMsg 
+        { model with Settings = settings }, [] //settings |> PinControl.Types.Msg.SetSettings |> PinControlMsg |> Cmd.ofMsg 
 
-    | PinControlMsg msg ->
-        let (pinControl, cmds) = PinControl.State.update msg model.PinControl
-        { model with PinControl = pinControl }, Cmd.batch [Cmd.map PinControlMsg cmds]
+    | PinControlListMsg msg ->
+        let (pinControl, cmds) = PinControlList.State.update msg model.PinControlList
+        { model with PinControlList = pinControl }, Cmd.batch [Cmd.map PinControlListMsg cmds]
     | _ -> model, []

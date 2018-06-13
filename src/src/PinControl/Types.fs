@@ -2,6 +2,7 @@ module PinControl.Types
 
 type Model = { 
     Settings: Settings.Types.Model
+    PinId: int
 }
 
 type Msg = 

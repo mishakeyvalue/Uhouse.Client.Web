@@ -2,7 +2,7 @@ module App.Types
 
 type Page =
     | Home
-    | PinControl
+    | PinControlList
     | Counter
     | CounterList
     | About
@@ -15,7 +15,7 @@ let toHash page =
     | CounterList -> "#counterlist"
     | Home -> "#home"
     | Settings -> "#settings"
-    | PinControl -> "#pin-control"
+    | PinControlList -> "#pin-control"
 
 
 type Msg =
@@ -23,7 +23,7 @@ type Msg =
     | CounterListMsg of CounterList.Types.Msg
     | HomeMsg of Home.Types.Msg
     | SettingsMsg of Settings.Types.Msg
-    | PinControlMsg of PinControl.Types.Msg
+    | PinControlListMsg of PinControlList.Types.Msg
 
 type Model =
     { CurrentPage : Page
@@ -31,5 +31,5 @@ type Model =
       CounterList : CounterList.Types.Model
       Home: Home.Types.Model
       Settings: Settings.Types.Model
-      PinControl: PinControl.Types.Model
+      PinControlList: PinControlList.Types.Model
     }

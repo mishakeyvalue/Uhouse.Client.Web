@@ -7,16 +7,24 @@ open Api
 open System.Runtime.Serialization
 open System
 open Fable.Import
-let init settings : Model = { Settings = settings }
+let init settings pinId : Model = { Settings = settings; PinId = pinId }
 
-let turnOnCmd uri = Cmd.ofPromise turnOnRequest uri (fun _ -> Msg.TurnedOn) (fun e -> Msg.HttpError e.Message)
-let turnOffCmd uri = Cmd.ofPromise turnOffRequest uri (fun _ -> Msg.TurnedOff) (fun e -> Msg.HttpError e.Message)
+let pinCmd request successMsg model =
+    let request' = request model.Settings.StationUri 
+    Cmd.ofPromise 
+        request'
+        model.PinId 
+        (fun _ -> successMsg) 
+        (fun e -> Msg.HttpError e.Message)
+
+let turnOnCmd model = pinCmd turnOnRequest TurnedOn model
+let turnOffCmd model = pinCmd turnOffRequest TurnedOff model
 
 let update (msg:Msg) (model:Model) = 
     Browser.console.log (sprintf "%A" msg)
     match msg with 
     | SetSettings settings -> { model with Settings = settings }, []
-    | TurnOn -> model, turnOnCmd model.Settings.StationUri
-    | TurnOff -> model, turnOffCmd model.Settings.StationUri
+    | TurnOn -> model, turnOnCmd model
+    | TurnOff -> model, turnOffCmd model
     | HttpError msg -> raise (Exception msg)
     | _ -> model, []

@@ -17,6 +17,9 @@
     <Compile Include="PinControl/Api.fs" />
     <Compile Include="PinControl/State.fs" />
     <Compile Include="PinControl/View.fs" />
+    <Compile Include="PinControlList/Types.fs" />
+    <Compile Include="PinControlList/State.fs" />
+    <Compile Include="PinControlList/View.fs" />
     <Compile Include="Home/Types.fs" />
     <Compile Include="Home/State.fs" />
     <Compile Include="Home/View.fs" />
