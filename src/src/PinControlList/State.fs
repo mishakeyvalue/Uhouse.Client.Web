@@ -3,7 +3,9 @@ module PinControlList.State
 open Elmish
 open Types
 
-let init settings = { Pins = [ for i in 0..5 do
+let private pinIds = [0..5] @ [12]
+
+let init settings = { Pins = [ for i in pinIds do
                                 yield PinControl.State.init settings i ]
                       Settings = settings }, Cmd.ofMsg SyncStatus
 
@@ -21,7 +23,7 @@ let private updatePin pinMap model =
     let (pins, cmd) = updatePin' pinMap model.Pins  
     { model with Pins = pins }, cmd
 
-let syncCmd = 
+let syncCmd (model: Model) = 
     let mapStatusToMessages result =        
         let inline mapToMessage v = if v then PinControl.Types.TurnedOn else PinControl.Types.TurnedOff
         result
@@ -29,8 +31,8 @@ let syncCmd =
         |> BatchUpdate
         
     Cmd.ofPromise 
-        (PinControlList.Api.getStatus "http://192.168.0.102:8090") 
-        [] 
+        (PinControlList.Api.getStatus model.Settings.StationUri) 
+        (model.Pins |> List.map (fun p -> p.PinId))
         mapStatusToMessages
         (raise)
 let update (msg:Msg) (model:Model) =
@@ -46,6 +48,6 @@ let update (msg:Msg) (model:Model) =
         updatePin updates model
     | Update (pinId, pinMsg) -> 
         updatePin (Map.empty |> Map.add pinId pinMsg) model
-    | SyncStatus -> model, syncCmd
+    | SyncStatus -> model, syncCmd model
     | _ -> model, []
         
