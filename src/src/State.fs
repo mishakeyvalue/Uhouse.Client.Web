@@ -5,7 +5,11 @@ open Elmish.Browser.Navigation
 open Elmish.Browser.UrlParser
 open Fable.Import
 open Types
-
+let SyncRefreshRate = 512 * 2 * 2 // ms
+let tick dispatch =
+    Browser.window.setInterval((fun _ -> 
+        dispatch SyncTick), SyncRefreshRate) |> ignore
+    ()
 let pageParser: Parser<Page->Page,Page> =
     oneOf [              
       map About (s "about")
@@ -25,18 +29,24 @@ let urlUpdate (result: Option<Page>) model =
         model, Navigation.modifyUrl (toHash model.CurrentPage)
 
     | Some page ->
-        { model with CurrentPage = page }, Cmd.none
+        { model with CurrentPage = page }, Cmd.ofSub tick
+
 
 let init result =
     let settings = Settings.State.init()
-    urlUpdate result
-        { CurrentPage = Home
-          Counter = Counter.State.init()
-          CounterList = CounterList.State.init()
-          Home = Home.State.init()
-          Settings = settings
-          PinControlList = PinControlList.State.init settings
-        }
+    let (pinListState, pinListCmd) = PinControlList.State.init settings
+    let (model, cmd) = 
+        urlUpdate 
+            result 
+            { CurrentPage = Home;
+              Counter = Counter.State.init();
+              CounterList = CounterList.State.init();
+              Home = Home.State.init();
+              Settings = settings;
+              PinControlList = pinListState
+            }
+
+    model, Cmd.batch [cmd; Cmd.map PinControlListMsg pinListCmd]
 
 
 let update msg (model:Model) =
@@ -53,9 +63,12 @@ let update msg (model:Model) =
 
     | SettingsMsg msg ->
         let settings = Settings.State.update msg model.Settings
-        { model with Settings = settings }, [] //settings |> PinControl.Types.Msg.SetSettings |> PinControlMsg |> Cmd.ofMsg 
+        { model with Settings = settings }, settings |> PinControlList.Types.Msg.SetSettings |> PinControlListMsg |> Cmd.ofMsg 
 
     | PinControlListMsg msg ->
         let (pinControl, cmds) = PinControlList.State.update msg model.PinControlList
         { model with PinControlList = pinControl }, Cmd.batch [Cmd.map PinControlListMsg cmds]
+    | SyncTick ->
+        model, PinControlListMsg PinControlList.Types.SyncStatus |> Cmd.ofMsg
+
     | _ -> model, []

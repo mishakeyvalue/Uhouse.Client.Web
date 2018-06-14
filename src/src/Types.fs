@@ -24,6 +24,7 @@ type Msg =
     | HomeMsg of Home.Types.Msg
     | SettingsMsg of Settings.Types.Msg
     | PinControlListMsg of PinControlList.Types.Msg
+    | SyncTick
 
 type Model =
     { CurrentPage : Page

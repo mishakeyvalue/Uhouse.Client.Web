@@ -16,6 +16,6 @@ let root model dispatch =
         [
           div
             [ ClassName "columns is-multiline" ]
-            (model.Pins |> List.map pinView)
+            (model.Pins |> List.sortBy (fun pin -> pin.PinId) |>List.map pinView)
         ] 
         
