@@ -7,6 +7,7 @@ type Page =
     | CounterList
     | About
     | Settings
+    | LampScheduler
 
 let toHash page =
     match page with
@@ -16,6 +17,7 @@ let toHash page =
     | Home -> "#home"
     | Settings -> "#settings"
     | PinControlList -> "#pin-control"
+    | LampScheduler -> "#scheduler"
 
 
 type Msg =
@@ -24,6 +26,7 @@ type Msg =
     | HomeMsg of Home.Types.Msg
     | SettingsMsg of Settings.Types.Msg
     | PinControlListMsg of PinControlList.Types.Msg
+    | LampSchedulerMsg of LampScheduler.Types.Msg
     | SyncTick
 
 type Model =
@@ -33,4 +36,5 @@ type Model =
       Home: Home.Types.Model
       Settings: Settings.Types.Model
       PinControlList: PinControlList.Types.Model
+      LampScheduler: LampScheduler.Types.Model
     }

@@ -36,7 +36,8 @@ let menu currentPage =
             menuItem "Counter sample" Page.Counter currentPage
             menuItem "Counter list sample" Page.CounterList currentPage
             menuItem "About" Page.About currentPage
-            menuItem "Settings" Page.Settings currentPage ] ]
+            menuItem "Settings" Page.Settings currentPage
+            menuItem "Scheduler" Page.LampScheduler currentPage ] ]
 
 let root (model: Model) dispatch =
 
@@ -48,6 +49,7 @@ let root (model: Model) dispatch =
         | Home -> Home.View.root model.Home (HomeMsg >> dispatch)
         | Settings -> Settings.View.root model.Settings (SettingsMsg >> dispatch)
         | PinControlList -> PinControlList.View.root model.PinControlList (PinControlListMsg >> dispatch)
+        | LampScheduler -> LampScheduler.View.root model.LampScheduler (LampSchedulerMsg >> dispatch)
         
 
     div

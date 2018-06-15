@@ -5,7 +5,7 @@ open Elmish.Browser.Navigation
 open Elmish.Browser.UrlParser
 open Fable.Import
 open Types
-let SyncRefreshRate = 512 * 2 * 2 // ms
+let SyncRefreshRate = 512 * 2 // ms
 let tick dispatch =
     Browser.window.setInterval((fun _ -> 
         dispatch SyncTick), SyncRefreshRate) |> ignore
@@ -18,6 +18,7 @@ let pageParser: Parser<Page->Page,Page> =
       map CounterList (s "counterlist")      
       map Home (s "home")
       map Settings (s "settings")
+      map LampScheduler (s "scheduler")
       map Home top
     ]
 
@@ -44,6 +45,7 @@ let init result =
               Home = Home.State.init();
               Settings = settings;
               PinControlList = pinListState
+              LampScheduler = LampScheduler.State.init settings
             }
 
     model, Cmd.batch [cmd; Cmd.map PinControlListMsg pinListCmd]
@@ -70,5 +72,9 @@ let update msg (model:Model) =
         { model with PinControlList = pinControl }, Cmd.batch [Cmd.map PinControlListMsg cmds]
     | SyncTick ->
         model, PinControlListMsg PinControlList.Types.SyncStatus |> Cmd.ofMsg
+
+    | LampSchedulerMsg msg ->
+        let (sModel, sCmd) = LampScheduler.State.update msg model.LampScheduler
+        { model with LampScheduler = sModel }, Cmd.map LampSchedulerMsg sCmd
 
     | _ -> model, []

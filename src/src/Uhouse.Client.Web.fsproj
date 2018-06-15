@@ -21,6 +21,10 @@
     <Compile Include="PinControlList/Api.fs" />
     <Compile Include="PinControlList/View.fs" />
     <Compile Include="PinControlList/State.fs" />
+    <Compile Include="LampScheduler/Types.fs" />
+    <Compile Include="LampScheduler/Api.fs" />
+    <Compile Include="LampScheduler/View.fs" />
+    <Compile Include="LampScheduler/State.fs" />
     <Compile Include="Home/Types.fs" />
     <Compile Include="Home/State.fs" />
     <Compile Include="Home/View.fs" />
